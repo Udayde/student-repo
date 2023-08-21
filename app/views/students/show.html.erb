@@ -1,0 +1,11 @@
+<h1>Student Details</h1>
+<%= notice%>
+<p><strong>Full Name:</strong><%= @student.full_name%></p>
+
+#  <p><strong>First Name:</strong><%= @student.first_name%></p>
+# <p><strong>Last Name:</strong><%= @student.last_name%></p>
+
+
+<p><strong>email:</strong><%= @student.email%></p>
+
+<%= link_to'Back',students_path%>|   <td><%= link_to 'edit',edit_student_path(@student)%>
