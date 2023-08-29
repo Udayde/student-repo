@@ -1,9 +1,9 @@
-<h1>Edit Student</h1>
+
 <%= form_with(model:@student) do |form| %>
     <% if @student.errors.any? %>
         <% @student.errors.full_messages.each do |message| %>
             <p><%= message %></p>
-        <%end%>
+        <% end %>
     <% end %>
 
 <div>
@@ -18,10 +18,13 @@
 </div>
 <br>
 
+
+
 <div>
 <%=form.label :email %>
 <%=form.email_field:email%>
 </div><br>
+
 <div>
 <%=form.label :profile_image %>
 <%=form.file_field:profile_image%>

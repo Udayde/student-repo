@@ -3,7 +3,7 @@
     <% if @student.errors.any? %>
         <% @student.errors.full_messages.each do |message| %>
             <p><%= message %></p>
-        <%end%>
+        <% end %>
     <% end %>
 
 <div>
@@ -22,10 +22,5 @@
 <%=form.label :email %>
 <%=form.email_field:email%>
 </div><br>
-<div>
-<%=form.label :profile_image %>
-<%=form.file_field:profile_image%>
-</div>
-<br>
-<center><%= form.submit class: 'btn btn-primary'%></center>
+<%=form.submit%>
 <% end %>

@@ -1,4 +1,9 @@
 class Student < ApplicationRecord
+   # **********pagination*****************
+   paginates_per 2
+
+   has_one_attached:profile_image
+   # ***************************
    has_many :blogs
    has_and_belongs_to_many :courses
    validates :first_name, presence:true 

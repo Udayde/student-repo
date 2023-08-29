@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
+
   def index
-    @students = Student.all
+    @students = Student.all.page(params[:page])#for pagination
   end
 
   def new
@@ -43,6 +44,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :email)
+
+    params.require(:student).permit(:first_name, :last_name, :email,:profile_image)
   end
 end

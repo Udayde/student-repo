@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  # c*****************ollection and member routing*************************
+  # c*****************collection and member routing*************************
   resources:students #do
   #   get :preview_profile,on: :member
   #   get :search_user,on: :collection
   # end
-
+  # get  'students/index'
 end
