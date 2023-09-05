@@ -19,6 +19,6 @@ class Student < ApplicationRecord
    has_many :projects,through: :student_projects
 
    def full_name
-      "#{first_name} #{last_name}"
+      "#{f_name} #{last_name}"
    end
 end

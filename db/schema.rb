@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_29_140959) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_01_200902) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,12 +39,42 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_140959) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "assemblies", force: :cascade do |t|
+    t.string "name"
+    t.string "string"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assembly_and_parts", force: :cascade do |t|
+    t.integer "assemblies_id"
+    t.integer "parts_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assemblies_id"], name: "index_assembly_and_parts_on_assemblies_id"
+    t.index ["parts_id"], name: "index_assembly_and_parts_on_parts_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "context"
     t.integer "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "teacher_id", null: false
+    t.index ["teacher_id"], name: "index_children_on_teacher_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -57,7 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_140959) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
-    t.text "descrition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +120,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_140959) do
     t.index ["department_id"], name: "index_managers_on_department_id"
   end
 
+  create_table "novels", force: :cascade do |t|
+    t.string "name"
+    t.integer "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_novels_on_author_id"
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.string "name"
+    t.string "string"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -122,6 +166,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_140959) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "abc"
@@ -137,8 +187,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_140959) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "assembly_and_parts", "assemblies", column: "assemblies_id"
+  add_foreign_key "assembly_and_parts", "parts", column: "parts_id"
+  add_foreign_key "children", "teachers"
   add_foreign_key "manager_histories", "managers"
   add_foreign_key "managers", "departments"
+  add_foreign_key "novels", "authors"
   add_foreign_key "student_projects", "projects"
   add_foreign_key "student_projects", "students"
 end

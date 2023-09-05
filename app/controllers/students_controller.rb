@@ -2,6 +2,7 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all.page(params[:page])#for pagination
+    # redirect_to students_path
   end
 
   def new

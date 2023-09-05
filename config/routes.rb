@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'emplpoyee/idex'
+  get 'emplpoyee/index'
   get 'emplpoyee/new'
   # resources :projects
   # get 'users/index'
@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   #   get :search_user,on: :collection
   # end
   # get  'students/index'
+  # get "*path" => "students#index"
 end
