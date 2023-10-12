@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all.page(params[:page])#for pagination
     # redirect_to students_path
+    # render json: params
   end
 
   def new
@@ -40,6 +41,10 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @student.destroy
     redirect_to students_path, notice: 'student has been deleted sucessfully'
+  end
+
+  def current_user
+    Student.first
   end
 
   private

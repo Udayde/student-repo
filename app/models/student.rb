@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+   belongs_to :user
    # **********pagination*****************
    paginates_per 2
 
